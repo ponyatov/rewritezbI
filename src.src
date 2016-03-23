@@ -12,23 +12,25 @@ hpp.hpp = [
 [ '#endif' '//' _H_MODULE ]/' '
 ]/'\n'
 
-.end
+#.end
 
-Makefile =
-log.log: ./exe.exe src.src
-	./exe.exe < src.src > log.log && tail $(TAIL) log.log
-CXXFLAGS += -std=gnu++11
-./exe.exe: $(C) $(H)
-	$(CXX) $(CXXFLAGS) -o $@ $(C)
-ypp.tab.cpp: ypp.ypp
-	bison $<
-lex.yy.c: lpp.lpp
-	flex $<
+Makefile = [
+'log.log: ./exe.exe src.src'
+'	./exe.exe < src.src > log.log && tail $(TAIL) log.log'
+'CXXFLAGS += -std=gnu++11'
+'./exe.exe: $(C) $(H)
+	$(CXX) $(CXXFLAGS) -o $@ $(C)'
+'ypp.tab.cpp: ypp.ypp
+	bison $<'
+'lex.yy.c: lpp.lpp
+	flex $<'
+]/'\n'
 	
-.gitignore =
-*~
-*.swp
+.gitignore = [
+'*~'
+'*.swp'
 exe.exe
 log.log
 ypp.tab.?pp
 lex.yy.c
+]/'\n'

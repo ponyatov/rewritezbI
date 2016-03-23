@@ -29,6 +29,7 @@ Str::Str(string V):Sym("str",V) {}
 string Str::tagval() { string S = "'";
 	for (int i=0;i<val.size();i++)
 		switch (val[i]) {
+		case '\t': S+="\\t"; break;
 		case '\n': S+="\\n"; break;
 		default: S+=val[i]; }
 	return S+"'"; }
