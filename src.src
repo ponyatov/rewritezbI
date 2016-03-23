@@ -1,0 +1,34 @@
+
+files = [ src.src log.log ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile .gitignore ]
+
+C = [ cpp.cpp ypp.tab.cpp lex.yy.c ]
+H = [ hpp.hpp ypp.tab.hpp ]
+
+_H_MODULE = _H_+MODULE
+
+hpp.hpp = [ 
+[ '#ifndef' _H_MODULE ]/' '
+[ '#define' _H_MODULE ]/' '
+[ '#endif' '//' _H_MODULE ]/' '
+]/'\n'
+
+.end
+
+Makefile =
+log.log: ./exe.exe src.src
+	./exe.exe < src.src > log.log && tail $(TAIL) log.log
+CXXFLAGS += -std=gnu++11
+./exe.exe: $(C) $(H)
+	$(CXX) $(CXXFLAGS) -o $@ $(C)
+ypp.tab.cpp: ypp.ypp
+	bison $<
+lex.yy.c: lpp.lpp
+	flex $<
+	
+.gitignore =
+*~
+*.swp
+exe.exe
+log.log
+ypp.tab.?pp
+lex.yy.c
